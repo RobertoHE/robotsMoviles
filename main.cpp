@@ -45,7 +45,11 @@ int main(int argc, const char ** argv)
 
     std::array<unsigned int, ndims> coords_init, coords_goal;
     //GridPoints::selectMapPoints(grid, coords_init, coords_goal);
-    coords_init = 15,50;
+    coords_init[0] = 15;
+    coords_init[1] = 100;
+
+    coords_goal[0] = 235;
+    coords_goal[1] =100;
 
 
     vector<unsigned int> init_points;

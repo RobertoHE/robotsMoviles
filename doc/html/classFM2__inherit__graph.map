@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node5" href="$classFM2Star.html" title="Implements the Fast Marching Square Star (FM2*) planning algorithm." alt="" coords="5,160,179,189"/>
+<area shape="rect" id="node2" href="$classSolver.html" title="Abstract class that serves as interface for the actual solvers implemented. It requires (at least) th..." alt="" coords="35,5,149,35"/>
+</map>

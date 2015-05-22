@@ -1,0 +1,17 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classSolver.html" title="Abstract class that serves as interface for the actual solvers implemented. It requires (at least) th..." alt="" coords="5,245,120,275"/>
+<area shape="rect" id="node3" href="$classEikonalSolver.html" title="Abstract class that serves as interface for the actual EikonalSolvers implemented. It requires (at least) the computeInternal method to be implemented,." alt="" coords="169,192,327,221"/>
+<area shape="rect" id="node27" href="$classFM2.html" title="Implements the Fast Marching Square (FM2) planning algorithm." alt="" coords="173,299,323,328"/>
+<area shape="rect" id="node5" href="$classDDQM.html" title="Implements Double Dynamic Queue Method." alt="" coords="452,5,569,35"/>
+<area shape="rect" id="node7" href="$classFIM.html" title="Implements Fast Iterative Method." alt="" coords="460,59,561,88"/>
+<area shape="rect" id="node9" href="$classFMM.html" title="Implements the Fast Marching Method (FMM)." alt="" coords="433,112,588,141"/>
+<area shape="rect" id="node13" href="$classFMM.html" title="FMM\&lt; grid_t, FMPriorityQueue\&lt; cell_t \&gt; \&gt;" alt="" coords="376,165,645,195"/>
+<area shape="rect" id="node19" href="$classFSM.html" title="Implements Fast Sweeping Method." alt="" coords="457,219,564,248"/>
+<area shape="rect" id="node23" href="$classGMM.html" title="Templated class which computes Group Marching Method (GMM)." alt="" coords="456,272,565,301"/>
+<area shape="rect" id="node25" href="$classUFMM.html" title="Fast Marching Method using a untidy priority queue (UFMM)." alt="" coords="432,325,589,355"/>
+<area shape="rect" id="node11" href="$classFMMStar.html" title="Encapsulates the calls to FMM with heuristics enabled." alt="" coords="693,112,872,141"/>
+<area shape="rect" id="node15" href="$classSFMM.html" title="Implements the Simplified Fast Marching Method, encapsulating FMM with a priority queue..." alt="" coords="705,165,860,195"/>
+<area shape="rect" id="node17" href="$classSFMMStar.html" title="SFMMStar\&lt; grid_t, cell_t \&gt;" alt="" coords="921,165,1100,195"/>
+<area shape="rect" id="node21" href="$classLSM.html" title="Implements Lock Sweeping Method." alt="" coords="731,219,835,248"/>
+<area shape="rect" id="node29" href="$classFM2Star.html" title="Implements the Fast Marching Square Star (FM2*) planning algorithm." alt="" coords="424,379,597,408"/>
+</map>

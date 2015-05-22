@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11 -Ofast -fno-finite-math-only    CMakeFiles/test_fm2.dir/test_fm2.cpp.o CMakeFiles/test_fm2.dir/home/acerillo/fastmarching/console/console.cpp.o CMakeFiles/test_fm2.dir/home/acerillo/fastmarching/ndgridmap/cell.cpp.o CMakeFiles/test_fm2.dir/home/acerillo/fastmarching/fmm/fmdata/fmcell.cpp.o  -o test_fm2 -rdynamic -lX11 -lpthread 

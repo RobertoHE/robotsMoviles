@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classCell.html" title="Cell" alt="" coords="5,5,51,35"/>
+<area shape="rect" id="node3" href="$classFMCell.html" title="A stand&#45;alone, standard C++ class which represents each one of the cells of a gridmap and its typical..." alt="" coords="99,5,163,35"/>
+</map>

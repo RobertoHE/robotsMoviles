@@ -1,0 +1,16 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classEikonalSolver.html" title="Abstract class that serves as interface for the actual EikonalSolvers implemented. It requires (at least) the computeInternal method to be implemented,." alt="" coords="172,185,329,215"/>
+<area shape="rect" id="node28" href="$classFM2.html" title="Implements the Fast Marching Square (FM2) planning algorithm." alt="" coords="199,296,303,325"/>
+<area shape="rect" id="node5" href="$classDDQM.html" title="Implements Double Dynamic Queue Method." alt="" coords="411,5,528,35"/>
+<area shape="rect" id="node7" href="$classFIM.html" title="Implements Fast Iterative Method." alt="" coords="419,59,520,88"/>
+<area shape="rect" id="node9" href="$classFMM.html" title="Implements the Fast Marching Method (FMM)." alt="" coords="416,112,523,141"/>
+<area shape="rect" id="node13" href="$classFMM.html" title="FMM\&lt; grid_t, FMPriorityQueue\&lt; cell_t \&gt; \&gt;" alt="" coords="827,149,1096,179"/>
+<area shape="rect" id="node20" href="$classFSM.html" title="Implements Fast Sweeping Method." alt="" coords="416,216,523,245"/>
+<area shape="rect" id="node24" href="$classGMM.html" title="Templated class which computes Group Marching Method (GMM)." alt="" coords="415,269,524,299"/>
+<area shape="rect" id="node26" href="$classUFMM.html" title="Fast Marching Method using a untidy priority queue (UFMM)." alt="" coords="411,323,528,352"/>
+<area shape="rect" id="node11" href="$classFMMStar.html" title="Encapsulates the calls to FMM with heuristics enabled." alt="" coords="872,83,1051,112"/>
+<area shape="rect" id="node15" href="$classSFMM.html" title="Implements the Simplified Fast Marching Method, encapsulating FMM with a priority queue..." alt="" coords="1148,149,1303,179"/>
+<area shape="rect" id="node17" href="$classSFMMStar.html" title="SFMMStar\&lt; grid_t, cell_t \&gt;" alt="" coords="1356,149,1535,179"/>
+<area shape="rect" id="node22" href="$classLSM.html" title="Implements Lock Sweeping Method." alt="" coords="909,216,1013,245"/>
+<area shape="rect" id="node30" href="$classFM2Star.html" title="Implements the Fast Marching Square Star (FM2*) planning algorithm." alt="" coords="383,376,556,405"/>
+</map>

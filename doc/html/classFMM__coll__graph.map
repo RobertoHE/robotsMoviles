@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$classEikonalSolver.html" title="Abstract class that serves as interface for the actual EikonalSolvers implemented. It requires (at least) the computeInternal method to be implemented,." alt="" coords="5,85,163,115"/>
+<area shape="rect" id="node4" href="$classSolver.html" title="Abstract class that serves as interface for the actual solvers implemented. It requires (at least) th..." alt="" coords="27,5,141,35"/>
+</map>

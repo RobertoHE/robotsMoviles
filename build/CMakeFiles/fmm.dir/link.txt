@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11 -Ofast -fno-finite-math-only    CMakeFiles/fmm.dir/main.cpp.o CMakeFiles/fmm.dir/console/console.cpp.o CMakeFiles/fmm.dir/ndgridmap/cell.cpp.o CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.o  -o fmm -rdynamic -lX11 -lpthread 

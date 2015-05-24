@@ -56,20 +56,20 @@ int main(int argc, const char ** argv)
     // Check if everything was fine
     if (!src.data)
         return -1;
-    imshow("Source Image", src);
+    //imshow("Source Image", src);
 
 
     //Binary threshold
     Mat bw;
     cvtColor(src, bw, CV_BGR2GRAY);
     threshold(bw, bw, 40, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
-    imshow("Binary Image", bw);
+    //imshow("Binary Image", bw);
 
     // Dilate a bit the dist image
     Mat kernel1 = Mat::ones(3, 3, CV_8UC1);
     for(int i=0;i<5;i++)
         erode(bw, bw, kernel1);
-    imshow("dilate", bw);
+    //imshow("dilate", bw);
 
     // Perform the distance transform algorithm
     Mat dist;
@@ -78,7 +78,7 @@ int main(int argc, const char ** argv)
     // Normalize the distance image for range = {0.0, 1.0}
     // so we can visualize and threshold it
     normalize(dist, dist, 0, 255, NORM_MINMAX);
-    imshow("Distance Transform Image", dist);
+    //imshow("Distance Transform Image", dist);
     imwrite("mapdis.jpg",dist);
 
     //LUT
@@ -94,15 +94,13 @@ int main(int argc, const char ** argv)
             p[i] = cbrt(255*255*i);
     }
     LUT(dist,lookUpTable,save);
-    imshow("save",save);
-
-
+    //imshow("save",save);
 
     //save file
     imwrite( "map.jpg", save);
 
-waitKey(0);
-    waitKey(100);
+//waitKey(0);
+//    waitKey(100);
 
     console::info("Creating grid from image and testing Fast Marching Method..");
     nDGridMap<FMCell, ndims> grid;
@@ -129,7 +127,7 @@ waitKey(0);
     fmm.compute();
         cout << "\tElapsed FM time: " << fmm.getTime() << " ms" << endl;
     console::info("Plotting the results and saving into test_fm.txt");
-    GridPlotter::plotArrivalTimes(grid);
+//    GridPlotter::plotArrivalTimes(grid);
     GridWriter::saveGridValues("test_fm.txt", grid);
 
     console::info("Computing gradient descent ");
@@ -146,7 +144,7 @@ waitKey(0);
         cout << "\tElapsed gradient descent time: " << time_elapsed << " ms" << endl;
     GridWriter::savePath("test_path.txt", grid, path);
     GridWriter::savePathVelocity("path_velocity.txt", grid, path, path_velocity);
-    GridPlotter::plotMapPath(grid,path);
+//    GridPlotter::plotMapPath(grid,path);
 
 
     return 0;

@@ -31,11 +31,17 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+# Escaping for special characters.
+EQUALS = =
+
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/acerillo/fastmarching
+CMAKE_SOURCE_DIR = /home/roberto/repos/robotsMoviles
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/acerillo/fastmarching/build
+CMAKE_BINARY_DIR = /home/roberto/repos/robotsMoviles/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/fmm.dir/depend.make
@@ -46,42 +52,42 @@ include CMakeFiles/fmm.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/fmm.dir/flags.make
 
-CMakeFiles/fmm.dir/main.cpp.o: CMakeFiles/fmm.dir/flags.make
-CMakeFiles/fmm.dir/main.cpp.o: ../main.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/acerillo/fastmarching/build/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/fmm.dir/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/fmm.dir/main.cpp.o -c /home/acerillo/fastmarching/main.cpp
+CMakeFiles/fmm.dir/main_console.cpp.o: CMakeFiles/fmm.dir/flags.make
+CMakeFiles/fmm.dir/main_console.cpp.o: ../main_console.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/roberto/repos/robotsMoviles/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/fmm.dir/main_console.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/fmm.dir/main_console.cpp.o -c /home/roberto/repos/robotsMoviles/main_console.cpp
 
-CMakeFiles/fmm.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/fmm.dir/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/acerillo/fastmarching/main.cpp > CMakeFiles/fmm.dir/main.cpp.i
+CMakeFiles/fmm.dir/main_console.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/fmm.dir/main_console.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/roberto/repos/robotsMoviles/main_console.cpp > CMakeFiles/fmm.dir/main_console.cpp.i
 
-CMakeFiles/fmm.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/fmm.dir/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/acerillo/fastmarching/main.cpp -o CMakeFiles/fmm.dir/main.cpp.s
+CMakeFiles/fmm.dir/main_console.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/fmm.dir/main_console.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/roberto/repos/robotsMoviles/main_console.cpp -o CMakeFiles/fmm.dir/main_console.cpp.s
 
-CMakeFiles/fmm.dir/main.cpp.o.requires:
-.PHONY : CMakeFiles/fmm.dir/main.cpp.o.requires
+CMakeFiles/fmm.dir/main_console.cpp.o.requires:
+.PHONY : CMakeFiles/fmm.dir/main_console.cpp.o.requires
 
-CMakeFiles/fmm.dir/main.cpp.o.provides: CMakeFiles/fmm.dir/main.cpp.o.requires
-	$(MAKE) -f CMakeFiles/fmm.dir/build.make CMakeFiles/fmm.dir/main.cpp.o.provides.build
-.PHONY : CMakeFiles/fmm.dir/main.cpp.o.provides
+CMakeFiles/fmm.dir/main_console.cpp.o.provides: CMakeFiles/fmm.dir/main_console.cpp.o.requires
+	$(MAKE) -f CMakeFiles/fmm.dir/build.make CMakeFiles/fmm.dir/main_console.cpp.o.provides.build
+.PHONY : CMakeFiles/fmm.dir/main_console.cpp.o.provides
 
-CMakeFiles/fmm.dir/main.cpp.o.provides.build: CMakeFiles/fmm.dir/main.cpp.o
+CMakeFiles/fmm.dir/main_console.cpp.o.provides.build: CMakeFiles/fmm.dir/main_console.cpp.o
 
 CMakeFiles/fmm.dir/console/console.cpp.o: CMakeFiles/fmm.dir/flags.make
 CMakeFiles/fmm.dir/console/console.cpp.o: ../console/console.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/acerillo/fastmarching/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/roberto/repos/robotsMoviles/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/fmm.dir/console/console.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/fmm.dir/console/console.cpp.o -c /home/acerillo/fastmarching/console/console.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/fmm.dir/console/console.cpp.o -c /home/roberto/repos/robotsMoviles/console/console.cpp
 
 CMakeFiles/fmm.dir/console/console.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/fmm.dir/console/console.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/acerillo/fastmarching/console/console.cpp > CMakeFiles/fmm.dir/console/console.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/roberto/repos/robotsMoviles/console/console.cpp > CMakeFiles/fmm.dir/console/console.cpp.i
 
 CMakeFiles/fmm.dir/console/console.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/fmm.dir/console/console.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/acerillo/fastmarching/console/console.cpp -o CMakeFiles/fmm.dir/console/console.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/roberto/repos/robotsMoviles/console/console.cpp -o CMakeFiles/fmm.dir/console/console.cpp.s
 
 CMakeFiles/fmm.dir/console/console.cpp.o.requires:
 .PHONY : CMakeFiles/fmm.dir/console/console.cpp.o.requires
@@ -94,17 +100,17 @@ CMakeFiles/fmm.dir/console/console.cpp.o.provides.build: CMakeFiles/fmm.dir/cons
 
 CMakeFiles/fmm.dir/ndgridmap/cell.cpp.o: CMakeFiles/fmm.dir/flags.make
 CMakeFiles/fmm.dir/ndgridmap/cell.cpp.o: ../ndgridmap/cell.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/acerillo/fastmarching/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/roberto/repos/robotsMoviles/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/fmm.dir/ndgridmap/cell.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/fmm.dir/ndgridmap/cell.cpp.o -c /home/acerillo/fastmarching/ndgridmap/cell.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/fmm.dir/ndgridmap/cell.cpp.o -c /home/roberto/repos/robotsMoviles/ndgridmap/cell.cpp
 
 CMakeFiles/fmm.dir/ndgridmap/cell.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/fmm.dir/ndgridmap/cell.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/acerillo/fastmarching/ndgridmap/cell.cpp > CMakeFiles/fmm.dir/ndgridmap/cell.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/roberto/repos/robotsMoviles/ndgridmap/cell.cpp > CMakeFiles/fmm.dir/ndgridmap/cell.cpp.i
 
 CMakeFiles/fmm.dir/ndgridmap/cell.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/fmm.dir/ndgridmap/cell.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/acerillo/fastmarching/ndgridmap/cell.cpp -o CMakeFiles/fmm.dir/ndgridmap/cell.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/roberto/repos/robotsMoviles/ndgridmap/cell.cpp -o CMakeFiles/fmm.dir/ndgridmap/cell.cpp.s
 
 CMakeFiles/fmm.dir/ndgridmap/cell.cpp.o.requires:
 .PHONY : CMakeFiles/fmm.dir/ndgridmap/cell.cpp.o.requires
@@ -117,17 +123,17 @@ CMakeFiles/fmm.dir/ndgridmap/cell.cpp.o.provides.build: CMakeFiles/fmm.dir/ndgri
 
 CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.o: CMakeFiles/fmm.dir/flags.make
 CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.o: ../fmm/fmdata/fmcell.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/acerillo/fastmarching/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/roberto/repos/robotsMoviles/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.o -c /home/acerillo/fastmarching/fmm/fmdata/fmcell.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.o -c /home/roberto/repos/robotsMoviles/fmm/fmdata/fmcell.cpp
 
 CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/acerillo/fastmarching/fmm/fmdata/fmcell.cpp > CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/roberto/repos/robotsMoviles/fmm/fmdata/fmcell.cpp > CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.i
 
 CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/acerillo/fastmarching/fmm/fmdata/fmcell.cpp -o CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/roberto/repos/robotsMoviles/fmm/fmdata/fmcell.cpp -o CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.s
 
 CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.o.requires:
 .PHONY : CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.o.requires
@@ -140,7 +146,7 @@ CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.o.provides.build: CMakeFiles/fmm.dir/fm
 
 # Object files for target fmm
 fmm_OBJECTS = \
-"CMakeFiles/fmm.dir/main.cpp.o" \
+"CMakeFiles/fmm.dir/main_console.cpp.o" \
 "CMakeFiles/fmm.dir/console/console.cpp.o" \
 "CMakeFiles/fmm.dir/ndgridmap/cell.cpp.o" \
 "CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.o"
@@ -148,11 +154,40 @@ fmm_OBJECTS = \
 # External object files for target fmm
 fmm_EXTERNAL_OBJECTS =
 
-fmm: CMakeFiles/fmm.dir/main.cpp.o
+fmm: CMakeFiles/fmm.dir/main_console.cpp.o
 fmm: CMakeFiles/fmm.dir/console/console.cpp.o
 fmm: CMakeFiles/fmm.dir/ndgridmap/cell.cpp.o
 fmm: CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.o
 fmm: CMakeFiles/fmm.dir/build.make
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_videostab.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_video.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_ts.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_superres.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_stitching.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_photo.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_ocl.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_objdetect.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_ml.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_legacy.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_highgui.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_gpu.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_flann.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_features2d.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_core.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_contrib.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_calib3d.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_photo.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_legacy.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_video.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_objdetect.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_ml.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_calib3d.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_features2d.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_highgui.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_flann.so.2.4.8
+fmm: /usr/lib/x86_64-linux-gnu/libopencv_core.so.2.4.8
 fmm: CMakeFiles/fmm.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable fmm"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/fmm.dir/link.txt --verbose=$(VERBOSE)
@@ -161,7 +196,7 @@ fmm: CMakeFiles/fmm.dir/link.txt
 CMakeFiles/fmm.dir/build: fmm
 .PHONY : CMakeFiles/fmm.dir/build
 
-CMakeFiles/fmm.dir/requires: CMakeFiles/fmm.dir/main.cpp.o.requires
+CMakeFiles/fmm.dir/requires: CMakeFiles/fmm.dir/main_console.cpp.o.requires
 CMakeFiles/fmm.dir/requires: CMakeFiles/fmm.dir/console/console.cpp.o.requires
 CMakeFiles/fmm.dir/requires: CMakeFiles/fmm.dir/ndgridmap/cell.cpp.o.requires
 CMakeFiles/fmm.dir/requires: CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.o.requires
@@ -172,6 +207,6 @@ CMakeFiles/fmm.dir/clean:
 .PHONY : CMakeFiles/fmm.dir/clean
 
 CMakeFiles/fmm.dir/depend:
-	cd /home/acerillo/fastmarching/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/acerillo/fastmarching /home/acerillo/fastmarching /home/acerillo/fastmarching/build /home/acerillo/fastmarching/build /home/acerillo/fastmarching/build/CMakeFiles/fmm.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/roberto/repos/robotsMoviles/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/roberto/repos/robotsMoviles /home/roberto/repos/robotsMoviles /home/roberto/repos/robotsMoviles/build /home/roberto/repos/robotsMoviles/build /home/roberto/repos/robotsMoviles/build/CMakeFiles/fmm.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/fmm.dir/depend
 

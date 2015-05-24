@@ -35,19 +35,25 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+# Escaping for special characters.
+EQUALS = =
+
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/acerillo/fastmarching
+CMAKE_SOURCE_DIR = /home/roberto/repos/robotsMoviles
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/acerillo/fastmarching/build
+CMAKE_BINARY_DIR = /home/roberto/repos/robotsMoviles/build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running interactive CMake command-line interface..."
-	/usr/bin/cmake -i .
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -66,9 +72,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/acerillo/fastmarching/build/CMakeFiles /home/acerillo/fastmarching/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/repos/robotsMoviles/build/CMakeFiles /home/roberto/repos/robotsMoviles/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/acerillo/fastmarching/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/repos/robotsMoviles/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -156,29 +162,29 @@ fmm/fmdata/fmcell.cpp.s:
 	$(MAKE) -f CMakeFiles/fmm.dir/build.make CMakeFiles/fmm.dir/fmm/fmdata/fmcell.cpp.s
 .PHONY : fmm/fmdata/fmcell.cpp.s
 
-main.o: main.cpp.o
-.PHONY : main.o
+main_console.o: main_console.cpp.o
+.PHONY : main_console.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/fmm.dir/build.make CMakeFiles/fmm.dir/main.cpp.o
-.PHONY : main.cpp.o
+main_console.cpp.o:
+	$(MAKE) -f CMakeFiles/fmm.dir/build.make CMakeFiles/fmm.dir/main_console.cpp.o
+.PHONY : main_console.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+main_console.i: main_console.cpp.i
+.PHONY : main_console.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/fmm.dir/build.make CMakeFiles/fmm.dir/main.cpp.i
-.PHONY : main.cpp.i
+main_console.cpp.i:
+	$(MAKE) -f CMakeFiles/fmm.dir/build.make CMakeFiles/fmm.dir/main_console.cpp.i
+.PHONY : main_console.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+main_console.s: main_console.cpp.s
+.PHONY : main_console.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/fmm.dir/build.make CMakeFiles/fmm.dir/main.cpp.s
-.PHONY : main.cpp.s
+main_console.cpp.s:
+	$(MAKE) -f CMakeFiles/fmm.dir/build.make CMakeFiles/fmm.dir/main_console.cpp.s
+.PHONY : main_console.cpp.s
 
 ndgridmap/cell.o: ndgridmap/cell.cpp.o
 .PHONY : ndgridmap/cell.o
@@ -219,9 +225,9 @@ help:
 	@echo "... fmm/fmdata/fmcell.o"
 	@echo "... fmm/fmdata/fmcell.i"
 	@echo "... fmm/fmdata/fmcell.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... main_console.o"
+	@echo "... main_console.i"
+	@echo "... main_console.s"
 	@echo "... ndgridmap/cell.o"
 	@echo "... ndgridmap/cell.i"
 	@echo "... ndgridmap/cell.s"

@@ -43,11 +43,17 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+# Escaping for special characters.
+EQUALS = =
+
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/acerillo/fastmarching
+CMAKE_SOURCE_DIR = /home/roberto/repos/robotsMoviles
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/acerillo/fastmarching/build
+CMAKE_BINARY_DIR = /home/roberto/repos/robotsMoviles/build
 
 #=============================================================================
 # Target rules for target CMakeFiles/fmm.dir
@@ -56,7 +62,7 @@ CMAKE_BINARY_DIR = /home/acerillo/fastmarching/build
 CMakeFiles/fmm.dir/all:
 	$(MAKE) -f CMakeFiles/fmm.dir/build.make CMakeFiles/fmm.dir/depend
 	$(MAKE) -f CMakeFiles/fmm.dir/build.make CMakeFiles/fmm.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/acerillo/fastmarching/build/CMakeFiles  1 2 3 4
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/roberto/repos/robotsMoviles/build/CMakeFiles  1 2 3 4
 	@echo "Built target fmm"
 .PHONY : CMakeFiles/fmm.dir/all
 
@@ -66,9 +72,9 @@ all: CMakeFiles/fmm.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/fmm.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/acerillo/fastmarching/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/repos/robotsMoviles/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/fmm.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/acerillo/fastmarching/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/repos/robotsMoviles/build/CMakeFiles 0
 .PHONY : CMakeFiles/fmm.dir/rule
 
 # Convenience name for target.

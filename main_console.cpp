@@ -77,28 +77,31 @@ int main(int argc, const char ** argv)
 
     // Normalize the distance image for range = {0.0, 1.0}
     // so we can visualize and threshold it
-    //normalize(dist, dist, 0, 1., NORM_MINMAX);
+    normalize(dist, dist, 0, 255, NORM_MINMAX);
     imshow("Distance Transform Image", dist);
+    imwrite("mapdis.jpg",dist);
 
     //LUT
+    Mat save(dist.size(),CV_8UC1);
+    dist.convertTo(dist,CV_8UC1);
+    convertScaleAbs(dist,dist);
 
-    /*
-    Mat save;
-    Mat lookUpTable(1, 256, CV_8U);
-        uchar* p = lookUpTable.data;
-        for( int i = 0; i < 256; ++i)
-            p[i] = i*i;
-        LUT(dist,lookUpTable,save);
-        imshow("save",save);
+    Mat lookUpTable(1, 256, CV_8UC1);
+    uchar* p = lookUpTable.data;
+    for( int i = 0; i < 256; ++i){
+    //        p[i] = 255*log(i+1)/log(256);
+    //        p[i] = sqrt(255*i);
+            p[i] = cbrt(255*255*i);
+    }
+    LUT(dist,lookUpTable,save);
+    imshow("save",save);
 
-*/
+
 
     //save file
+    imwrite( "map.jpg", save);
 
-
-    imwrite( "map.jpg", dist);
-
-
+waitKey(0);
     waitKey(100);
 
     console::info("Creating grid from image and testing Fast Marching Method..");

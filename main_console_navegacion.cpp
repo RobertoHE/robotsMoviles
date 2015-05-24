@@ -27,9 +27,10 @@
 using namespace std;
 using namespace std::chrono;
 
-void global_to_relative(double x,double y, double dx, double dy, double teta);
+void global_to_relative(double x,double y, double dx, double dy, double alfa);
 std::array<double, 2> coords_Robot, coords_Path, coordsR_Robot, coordsR_Path;//global
 double teta;
+int tiempo_refresco= 100; // 100 milisegundos entre cálculos de coordenadas
 
 int main(int argc, const char ** argv)
 {
@@ -42,24 +43,27 @@ int main(int argc, const char ** argv)
     coords_Robot[0] = coords_init[0];
     coords_Robot[1] = coords_init[1];
 
-
     coords_goal[0] = 235;
     coords_goal[1] =100;
 
     coords_Path[0] = 18;
     coords_Path[1]= 102.725;
 
+    //coords_Path[0] = 12;
+    //coords_Path[1]= 82;
+
+
     bool navegacion=true;
 
     int speed= 10; // velocidad total lineal del robot
-    teta = 3.1415/2;//giro del sistema de referencia 90 grados al principio
+    double alfa = 0;//giro del sistema de referencia 0 grados al principio
     double distance = 0;//distancia entre el robot y el punto del path
     int distance_wheel = 10; //separación entre las ruedas en cm
     int wheel_radius = 5; //radio de la rueda en cm
 
     while(navegacion){
 
-        global_to_relative(coords_Path[0], coords_Path[1], coords_Robot[0], coords_Robot[1], teta);//paso a coordenadas globales a relativas al robot
+        global_to_relative(coords_Path[0], coords_Path[1], coords_Robot[0], coords_Robot[1], alfa);//paso a coordenadas globales a relativas al robot
         cout << "Coord Path x:" << coordsR_Path[0] << "       Coord Path y:"<< coordsR_Path[1] << endl;
 
         distance = coordsR_Path[0]*coordsR_Path[0] + coordsR_Path[1]*coordsR_Path[1];
@@ -74,19 +78,16 @@ int main(int argc, const char ** argv)
         double L_Wheel_Speed = (speed - distance_wheel*turning_speed );
         cout << "Rueda derecha: " << R_Wheel_Speed << "     Rueda izquierda: " << L_Wheel_Speed << endl;
 
-
         double Omega_R = R_Wheel_Speed / wheel_radius;
         double Omega_L = L_Wheel_Speed / wheel_radius;
         cout << "Rueda derecha: " << Omega_R << "     Rueda izquierda: " << Omega_L << endl;
 
-/*
-
-
-
         //calculo de posición mediante odometria, desde el eje de referencia global
-        coords_Robot[1] = (-(R_Wheel_Speed+ L_Wheel_Speed)/2)*sin(teta);
-        coords_Robot[0] = (-(R_Wheel_Speed+ L_Wheel_Speed)/2)*cos(teta);
-        teta = teta + ((R_Wheel_Speed + L_Wheel_Speed)/distance_wheel);*/
+        coords_Robot[0] = coords_Robot[0] + (((R_Wheel_Speed + L_Wheel_Speed)/2)*cos(teta))*100;// e = v*t
+        coords_Robot[1] = coords_Robot[1] ((-(R_Wheel_Speed + L_Wheel_Speed)/2)*sin(teta))*100;
+        double alfa = alfa +  ((R_Wheel_Speed + L_Wheel_Speed)/distance_wheel);
+        cout << "Teta: "<<  teta << endl;
+
 
          navegacion = false;
     }
@@ -96,12 +97,20 @@ int main(int argc, const char ** argv)
 }
 
 
-void global_to_relative(double x,double y, double dx, double dy, double teta){
+void global_to_relative(double x,double y, double dx, double dy, double alfa){
 
+    coordsR_Path[0] = cos(alfa)*x - sin(alfa)*y - dx; //dx y dy es el desplazamiento del robot sobre el eje de coordenadas global
+    coordsR_Path[1] = sin(alfa)*x + cos(alfa)*y - dy;
+
+    /*
     coordsR_Path[0] = x - dx;
     coordsR_Path[1] = y - dy;
-    /*
-    coordsR_Path[0] = cos(teta)*x - sin(teta)*y + dy; //suma de la coordenada global actual de robot
-    coordsR_Path[1] = sin(teta)*x + cos(teta)*y - dx;
     */
+    /*
+    coordsR_Path[0] = cos(alfa)*x - sin(alfa)*y + dy; //dx y dy es el desplazamiento del robot sobre el global
+    coordsR_Path[1] = sin(alfa)*x + cos(alfa)*y - dx;
+    */
+
+
 }
+

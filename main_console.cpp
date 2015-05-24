@@ -58,7 +58,6 @@ int main(int argc, const char ** argv)
         return -1;
     //imshow("Source Image", src);
 
-
     //Binary threshold
     Mat bw;
     cvtColor(src, bw, CV_BGR2GRAY);
@@ -146,6 +145,34 @@ int main(int argc, const char ** argv)
     GridWriter::savePathVelocity("path_velocity.txt", grid, path, path_velocity);
 //    GridPlotter::plotMapPath(grid,path);
 
+
+    //open path file
+    ifstream file("test_path.txt");
+    string str;
+    float x,y;
+    vector<pair<float,float>> path_vector;
+    //remove 4 first lines
+    for(int i =0 ;i < 4; i++)
+        getline(file, str);
+    //store in a vector
+    while(file >> x >> y){
+        pair<float,float> pos;
+        pos.first= x;
+        pos.second = y;
+        cout << pos.first << ", " << pos.second << endl;
+        path_vector.push_back(pos);
+    }
+
+    cout << "------" << endl;
+    //read the path from the vector
+    for (vector<pair<float, float> >::iterator i = path_vector.begin(); i != path_vector.end(); i++) {
+        pair <float,float> pair_aux;
+        pair_aux =make_pair(i->first,i->second);
+        x=pair_aux.first;
+        y=pair_aux.second;
+        cout << x << ", " << y << endl;
+
+    }
 
     return 0;
 }

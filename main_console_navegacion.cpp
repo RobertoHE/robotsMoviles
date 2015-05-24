@@ -55,7 +55,7 @@ int main(int argc, const char ** argv)
 
     bool navegacion=true;
 
-    int speed= 10; // velocidad total lineal del robot
+    int speed = 2; // velocidad total lineal del robot
     double alfa = 0;//giro del sistema de referencia 0 grados al principio
     double distance = 0;//distancia entre el robot y el punto del path
     int distance_wheel = 10; //separación entre las ruedas en cm
@@ -83,13 +83,13 @@ int main(int argc, const char ** argv)
         cout << "Rueda derecha: " << Omega_R << "     Rueda izquierda: " << Omega_L << endl;
 
         //calculo de posición mediante odometria, desde el eje de referencia global
-        coords_Robot[0] = coords_Robot[0] + (((R_Wheel_Speed + L_Wheel_Speed)/2)*cos(teta))*100;// e = v*t
-        coords_Robot[1] = coords_Robot[1] ((-(R_Wheel_Speed + L_Wheel_Speed)/2)*sin(teta))*100;
+        coords_Robot[0] = coords_Robot[0] + (((R_Wheel_Speed + L_Wheel_Speed)/2)*cos(teta))*0.1;// e = v*t
+        coords_Robot[1] = coords_Robot[1] + (((R_Wheel_Speed + L_Wheel_Speed)/2)*sin(teta))*0.1;
         double alfa = alfa +  ((R_Wheel_Speed + L_Wheel_Speed)/distance_wheel);
-        cout << "Teta: "<<  teta << endl;
+        cout << "Coordenadas movidas real  x: " << coords_Robot[0] << "   y:" << coords_Robot[1] << endl;
+        cout << "Teta: "<<  teta * (180 / 3.1415) << endl;// proximo angulo a desplazar el eje de referencia
 
-
-         navegacion = false;
+        navegacion = false;
     }
 
 

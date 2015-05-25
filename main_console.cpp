@@ -171,31 +171,38 @@ int main(int argc, const char ** argv)
 
     int speed = 2; // velocidad total lineal del robot
     double distance;//distancia entre el robot y el punto del path
+    double distance_threshold = 2.0;
     int distance_wheel = 10; //separación entre las ruedas en cm
     int wheel_radius = 5; //radio de la rueda en cm
     double teta;
-    float basetime = 500.0; //ms
+    float basetime = 1000.0; //ms
 
     cout << "------" << endl;
 
     //inicialize robot position
-    xrobot =path_vector.front().first;
-    yrobot =path_vector.front().second;
+    xrobot =path_vector.back().first;
+    yrobot =path_vector.back().second;
     double alfa = 0;
 
 
     //read the path from the vector
-    for (vector<pair<float, float> >::iterator i = path_vector.begin(); i != path_vector.end(); i++) {
+    for (vector<pair<float, float> >::iterator i = path_vector.end(); i != path_vector.begin(); i--) {
         pair <float,float> actual_point;
         actual_point = make_pair(i->first,i->second);
         xpath=actual_point.first;
         ypath=actual_point.second;
 cout << "----" << endl;
+cout << "Coord Path x:" << xpath << "       Coord Path y:"<< ypath << endl;
+
         global_to_relative(xpath, ypath, xrobot, yrobot, alfa, xrelative, yrelative);//paso a coordenadas globales a relativas al robot
         cout << "Coord Path x:" << xrelative << "       Coord Path y:"<< yrelative << endl;
 
         distance = sqrt(xrelative*xrelative+yrelative*yrelative);//distancia entre el robot y el punto del path
         cout << "Distance:" <<distance << endl;
+
+        if(distance <= distance_threshold){//elegir el proximo punto de la trayectoria
+            continue;
+        }
 
         teta = atan2(yrelative, xrelative);//cálculo del ángulo del robot con el punto del a trayectoria
         cout <<"Angulo: "<< teta * 180 / 3.1415 << endl;
@@ -212,7 +219,7 @@ cout << "----" << endl;
         //calculo de posición mediante odometria, desde el eje de referencia global
         xrobot = xrobot + (((R_Wheel_Speed + L_Wheel_Speed)/2.0)*cos(teta))*basetime/1000.0;// e = v*t
         yrobot = yrobot + (((R_Wheel_Speed + L_Wheel_Speed)/2.0)*sin(teta))*basetime/1000.0;
-        double alfa = alfa +  ((R_Wheel_Speed + L_Wheel_Speed)/distance_wheel);
+        double alfa = alfa +  ((R_Wheel_Speed + L_Wheel_Speed)/distance_wheel)*basetime/1000.0;
         cout << "Coordenadas movidas real  x: " << xrobot << "   y:" << yrobot << endl;
         cout << "Teta: "<<  teta * (180 / 3.1415) << endl;// proximo angulo a desplazar el eje de referencia
 

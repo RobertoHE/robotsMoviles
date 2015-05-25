@@ -11,6 +11,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 
 #include <sstream>
+#include <time.h>
 
 
 #include "fmm/fmdata/fmcell.h"
@@ -32,6 +33,9 @@
 using namespace std;
 using namespace std::chrono;
 using namespace cv;
+
+
+void global_to_relative(double x, double y, double dx, double dy, double alfa, double &rx, double &yr);
 
 int main(int argc, const char ** argv)
 {
@@ -159,20 +163,84 @@ int main(int argc, const char ** argv)
         pair<float,float> pos;
         pos.first= x;
         pos.second = y;
-        cout << pos.first << ", " << pos.second << endl;
+        //cout << pos.first << ", " << pos.second << endl;
         path_vector.push_back(pos);
     }
 
+    double xpath, ypath, xrobot, yrobot, xrelative, yrelative;
+
+    int speed = 2; // velocidad total lineal del robot
+    double distance;//distancia entre el robot y el punto del path
+    int distance_wheel = 10; //separación entre las ruedas en cm
+    int wheel_radius = 5; //radio de la rueda en cm
+    double teta;
+    float basetime = 500.0; //ms
+
     cout << "------" << endl;
+
+    //inicialize robot position
+    xrobot =path_vector.front().first;
+    yrobot =path_vector.front().second;
+    double alfa = 0;
+
+
     //read the path from the vector
     for (vector<pair<float, float> >::iterator i = path_vector.begin(); i != path_vector.end(); i++) {
-        pair <float,float> pair_aux;
-        pair_aux =make_pair(i->first,i->second);
-        x=pair_aux.first;
-        y=pair_aux.second;
-        cout << x << ", " << y << endl;
+        pair <float,float> actual_point;
+        actual_point = make_pair(i->first,i->second);
+        xpath=actual_point.first;
+        ypath=actual_point.second;
+cout << "----" << endl;
+        global_to_relative(xpath, ypath, xrobot, yrobot, alfa, xrelative, yrelative);//paso a coordenadas globales a relativas al robot
+        cout << "Coord Path x:" << xrelative << "       Coord Path y:"<< yrelative << endl;
+
+        distance = sqrt(xrelative*xrelative+yrelative*yrelative);//distancia entre el robot y el punto del path
+        cout << "Distance:" <<distance << endl;
+
+        teta = atan2(yrelative, xrelative);//cálculo del ángulo del robot con el punto del a trayectoria
+        cout <<"Angulo: "<< teta * 180 / 3.1415 << endl;
+
+        double turning_speed = 0.1 * teta;//en radianes parámetro configurable del controlador P
+
+        double R_Wheel_Speed = (speed + distance_wheel*turning_speed );//velocidad lineal de las ruedas
+        double L_Wheel_Speed = (speed - distance_wheel*turning_speed );
+        cout << "Rueda derecha: " << R_Wheel_Speed << "     Rueda izquierda: " << L_Wheel_Speed << endl;
+        double Omega_R = R_Wheel_Speed / wheel_radius;
+        double Omega_L = L_Wheel_Speed / wheel_radius;
+        cout << "Rueda derecha: " << Omega_R << "     Rueda izquierda: " << Omega_L << endl;
+
+        //calculo de posición mediante odometria, desde el eje de referencia global
+        xrobot = xrobot + (((R_Wheel_Speed + L_Wheel_Speed)/2.0)*cos(teta))*basetime/1000.0;// e = v*t
+        yrobot = yrobot + (((R_Wheel_Speed + L_Wheel_Speed)/2.0)*sin(teta))*basetime/1000.0;
+        double alfa = alfa +  ((R_Wheel_Speed + L_Wheel_Speed)/distance_wheel);
+        cout << "Coordenadas movidas real  x: " << xrobot << "   y:" << yrobot << endl;
+        cout << "Teta: "<<  teta * (180 / 3.1415) << endl;// proximo angulo a desplazar el eje de referencia
+
+
+        //aqui mover el robot
+
+        usleep(basetime*1000);
+
+
 
     }
 
     return 0;
+}
+
+void global_to_relative(double x, double y, double dx, double dy, double alfa, double &xr, double &yr){
+
+    xr = cos(alfa)*x - sin(alfa)*y - dx; //dx y dy es el desplazamiento del robot sobre el eje de coordenadas global
+    yr = sin(alfa)*x + cos(alfa)*y - dy;
+
+    /*
+    coordsR_Path[0] = x - dx;
+    coordsR_Path[1] = y - dy;
+    */
+    /*
+    coordsR_Path[0] = cos(alfa)*x - sin(alfa)*y + dy; //dx y dy es el desplazamiento del robot sobre el global
+    coordsR_Path[1] = sin(alfa)*x + cos(alfa)*y - dx;
+    */
+
+
 }

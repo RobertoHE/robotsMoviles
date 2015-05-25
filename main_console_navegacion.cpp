@@ -58,6 +58,7 @@ int main(int argc, const char ** argv)
     int speed = 2; // velocidad total lineal del robot
     double alfa = 0;//giro del sistema de referencia 0 grados al principio
     double distance = 0;//distancia entre el robot y el punto del path
+    double distance_threshold=2;
     int distance_wheel = 10; //separación entre las ruedas en cm
     int wheel_radius = 5; //radio de la rueda en cm
 
@@ -70,24 +71,36 @@ int main(int argc, const char ** argv)
         distance = sqrt(distance);//distancia entre el robot y el punto del path
         cout << "Distance:" <<distance << endl;
 
-        teta = atan2(coordsR_Path[1], coordsR_Path[0]);//cálculo del ángulo del robot con el punto del a trayectoria
-        cout <<"Angulo: "<< teta * 180 / 3.1415 << endl;
-        double turning_speed = 0.1 * teta;//en radianes parámetro configurable del controlador P
+        if(distance <= distance_threshold){//elegir el proximo punto de la trayectoria
 
-        double R_Wheel_Speed = (speed + distance_wheel*turning_speed );//velocidad lineal de las ruedas
-        double L_Wheel_Speed = (speed - distance_wheel*turning_speed );
-        cout << "Rueda derecha: " << R_Wheel_Speed << "     Rueda izquierda: " << L_Wheel_Speed << endl;
+            coords_Path[0] = 23;
+            coords_Path[1]= 104.215	;
 
-        double Omega_R = R_Wheel_Speed / wheel_radius;
-        double Omega_L = L_Wheel_Speed / wheel_radius;
-        cout << "Rueda derecha: " << Omega_R << "     Rueda izquierda: " << Omega_L << endl;
+        }
+        else{
 
-        //calculo de posición mediante odometria, desde el eje de referencia global
-        coords_Robot[0] = coords_Robot[0] + (((R_Wheel_Speed + L_Wheel_Speed)/2)*cos(teta))*0.1;// e = v*t
-        coords_Robot[1] = coords_Robot[1] + (((R_Wheel_Speed + L_Wheel_Speed)/2)*sin(teta))*0.1;
-        double alfa = alfa +  ((R_Wheel_Speed + L_Wheel_Speed)/distance_wheel);
-        cout << "Coordenadas movidas real  x: " << coords_Robot[0] << "   y:" << coords_Robot[1] << endl;
-        cout << "Teta: "<<  teta * (180 / 3.1415) << endl;// proximo angulo a desplazar el eje de referencia
+            teta = atan2(coordsR_Path[1], coordsR_Path[0]);//cálculo del ángulo del robot con el punto del a trayectoria
+            cout <<"Angulo: "<< teta * 180 / 3.1415 << endl;
+
+            double turning_speed = 0.1 * teta;//en radianes parámetro configurable del controlador P
+
+            double R_Wheel_Speed = (speed + distance_wheel*turning_speed );//velocidad lineal de las ruedas
+            double L_Wheel_Speed = (speed - distance_wheel*turning_speed );
+            cout << "Rueda derecha: " << R_Wheel_Speed << "     Rueda izquierda: " << L_Wheel_Speed << endl;
+
+            double Omega_R = R_Wheel_Speed / wheel_radius;
+            double Omega_L = L_Wheel_Speed / wheel_radius;
+            cout << "Rueda derecha: " << Omega_R << "     Rueda izquierda: " << Omega_L << endl;
+
+            //calculo de posición mediante odometria, desde el eje de referencia global
+            coords_Robot[0] = coords_Robot[0] + (((R_Wheel_Speed + L_Wheel_Speed)/2)*cos(teta))*0.1;// e = v*t
+            coords_Robot[1] = coords_Robot[1] + (((R_Wheel_Speed + L_Wheel_Speed)/2)*sin(teta))*0.1;
+            double alfa = alfa +  ((R_Wheel_Speed + L_Wheel_Speed)/distance_wheel);
+            cout << "Coordenadas movidas real  x: " << coords_Robot[0] << "   y:" << coords_Robot[1] << endl;
+            cout << "Teta: "<<  teta * (180 / 3.1415) << endl;// proximo angulo a desplazar el eje de referencia
+        }
+
+
 
         navegacion = false;
     }

@@ -47,16 +47,16 @@
 
 using namespace std;
 using namespace std::chrono;
-using namespace cv;
+//using namespace cv;
 
 
 void global_to_relative(double x, double y, double dx, double dy, double alfa, double &rx, double &yr);
 
 int main(int argc, const char ** argv)
 {
-/*    constexpr unsigned int ndims = 2; // Setting two dimensions.
+    constexpr unsigned int ndims = 2; // Setting two dimensions.
     constexpr unsigned int ndims3 = 3; // Setting three dimensions.
-
+/*
     //inicialize GPIOs os Rpi for Servos
     if (wiringPiSetup () == -1)
         {
@@ -64,7 +64,7 @@ int main(int argc, const char ** argv)
         return 1 ;
         }
     softServoSetup (R_Servo, L_Servo,-1,-1,-1,-1,-1,-1) ;
-
+*/
 
     time_point<std::chrono::steady_clock> start, end; // Time measuring.
     double time_elapsed;
@@ -74,7 +74,7 @@ int main(int argc, const char ** argv)
     console::parseArguments(argc,argv, "-map1", filename1);
     console::parseArguments(argc,argv, "-map2", filename2);
     console::parseArguments(argc,argv, "-vel", filename_vels);
-
+/*
     console::info("OpenCV Transform...");
     // Load the image
     Mat src = imread(filename2);

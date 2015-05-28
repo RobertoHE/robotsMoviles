@@ -15,7 +15,7 @@ SET(CMAKE_CXX_FLAGS_RELEASE "-Ofast -fno-finite-math-only")
 SET(CMAKE_CXX_FLAGS_DEBUG  "-Wall -Wno-unused-local-typedefs -g")
 
 # Find OpenCV
-find_package(OpenCV REQUIRED)
+#find_package(OpenCV REQUIRED)
 
 # Self-made includes
 include_directories (${FMM_SOURCE_DIR}/console)
@@ -44,6 +44,6 @@ add_executable (fmm main_console_sin_opencv.cpp
                     ) 
 
 # Linking CImg dependencies.
-target_link_libraries(fmm ${OpenCV_LIBS})
+#target_link_libraries(fmm ${OpenCV_LIBS})
 #target_link_libraries(fmm wiringPi)
 target_link_libraries (fmm X11 pthread ) 

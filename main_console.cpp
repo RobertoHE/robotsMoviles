@@ -30,6 +30,21 @@
 #include "io/gridpoints.hpp"
 #include "gradientdescent/gradientdescent.hpp"
 
+#include <stdio.h>
+#include <errno.h>
+#include <string.h>
+
+#include <drogon/wiringpi/wiringPi/wiringPi.h>
+#include <drogon/wiringpi/wiringPi/softServo.h>
+
+
+#define R_Servo 1
+#define L_Servo 2
+
+#define trim_R 14
+#define trim_L 8
+
+
 using namespace std;
 using namespace std::chrono;
 using namespace cv;
@@ -42,7 +57,13 @@ int main(int argc, const char ** argv)
     constexpr unsigned int ndims = 2; // Setting two dimensions.
     constexpr unsigned int ndims3 = 3; // Setting three dimensions.
 
-
+    //inicialize GPIOs os Rpi for Servos
+    if (wiringPiSetup () == -1)
+        {
+        fprintf (stdout, "oops: %s\n", strerror (errno)) ;
+        return 1 ;
+        }
+    softServoSetup (R_Servo, L_Servo,-1,-1,-1,-1,-1,-1) ;
 
 
     time_point<std::chrono::steady_clock> start, end; // Time measuring.
@@ -102,7 +123,7 @@ int main(int argc, const char ** argv)
     //save file
     imwrite( "map.jpg", save);
 
-//waitKey(0);
+    //waitKey(0);
 //    waitKey(100);
 
     console::info("Creating grid from image and testing Fast Marching Method..");
@@ -110,7 +131,7 @@ int main(int argc, const char ** argv)
     MapLoader::loadMapFromImg("map.jpg", grid);
 
     std::array<unsigned int, ndims> coords_init, coords_goal;
-    //GridPoints::selectMapPoints(grid, coords_init, coords_goal);
+
     coords_init[0] = 15;
     coords_init[1] = 100;
 
@@ -130,7 +151,7 @@ int main(int argc, const char ** argv)
     fmm.compute();
         cout << "\tElapsed FM time: " << fmm.getTime() << " ms" << endl;
     console::info("Plotting the results and saving into test_fm.txt");
-//    GridPlotter::plotArrivalTimes(grid);
+  //  GridPlotter::plotArrivalTimes(grid);
     GridWriter::saveGridValues("test_fm.txt", grid);
 
     console::info("Computing gradient descent ");
@@ -147,7 +168,7 @@ int main(int argc, const char ** argv)
         cout << "\tElapsed gradient descent time: " << time_elapsed << " ms" << endl;
     GridWriter::savePath("test_path.txt", grid, path);
     GridWriter::savePathVelocity("path_velocity.txt", grid, path, path_velocity);
-//    GridPlotter::plotMapPath(grid,path);
+  //  GridPlotter::plotMapPath(grid,path);
 
 
     //open path file
@@ -184,6 +205,8 @@ int main(int argc, const char ** argv)
     yrobot =path_vector.back().second;
     double alfa = 0;
 
+    int vel_r, vel_l;
+
 
     //read the path from the vector
     for (vector<pair<float, float> >::iterator i = path_vector.end(); i != path_vector.begin(); i--) {
@@ -215,6 +238,19 @@ cout << "Coord Path x:" << xpath << "       Coord Path y:"<< ypath << endl;
         double Omega_R = R_Wheel_Speed / wheel_radius;
         double Omega_L = L_Wheel_Speed / wheel_radius;
         cout << "Rueda derecha: " << Omega_R << "     Rueda izquierda: " << Omega_L << endl;
+
+        // Adecuar velocidad
+
+        // Sacar la señal de los motores
+        vel_r = (int)(5.555555*Omega_R + 927,78);
+        vel_l = (int)(0,34219*Omega_L*Omega_L*Omega_L-1.9104*Omega_L*Omega_L+12.967*Omega_L+1447.6);
+
+        // Mover los motores
+
+        softServoWrite (R_Servo,  vel_r) ;
+        softServoWrite (L_Servo,  vel_l) ;
+
+
 
         //calculo de posición mediante odometria, desde el eje de referencia global
         xrobot = xrobot + (((R_Wheel_Speed + L_Wheel_Speed)/2.0)*cos(teta))*basetime/1000.0;// e = v*t

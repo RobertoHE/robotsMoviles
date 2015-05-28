@@ -125,7 +125,7 @@ int main(int argc, const char ** argv)
 
     //waitKey(0);
 //    waitKey(100);
-
+*/
     console::info("Creating grid from image and testing Fast Marching Method..");
     nDGridMap<FMCell, ndims> grid;
     MapLoader::loadMapFromImg("map.jpg", grid);
@@ -170,7 +170,7 @@ int main(int argc, const char ** argv)
     GridWriter::savePathVelocity("path_velocity.txt", grid, path, path_velocity);
   //  GridPlotter::plotMapPath(grid,path);
 
-*/
+
     //open path file
     ifstream file("test_path.txt");
     string str;
@@ -247,8 +247,8 @@ cout << "Coord Path x:" << xpath << "       Coord Path y:"<< ypath << endl;
 
         // Mover los motores
 
-        softServoWrite (R_Servo,  vel_r) ;
-        softServoWrite (L_Servo,  vel_l) ;
+//        softServoWrite (R_Servo,  vel_r) ;
+//        softServoWrite (L_Servo,  vel_l) ;
 
 
 

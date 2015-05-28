@@ -5,11 +5,11 @@
 #include <chrono>
 #include <array>
 #include <string>
-
+/*
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-
+*/
 #include <sstream>
 #include <time.h>
 
@@ -54,7 +54,7 @@ void global_to_relative(double x, double y, double dx, double dy, double alfa, d
 
 int main(int argc, const char ** argv)
 {
-    constexpr unsigned int ndims = 2; // Setting two dimensions.
+/*    constexpr unsigned int ndims = 2; // Setting two dimensions.
     constexpr unsigned int ndims3 = 3; // Setting three dimensions.
 
     //inicialize GPIOs os Rpi for Servos
@@ -170,7 +170,7 @@ int main(int argc, const char ** argv)
     GridWriter::savePathVelocity("path_velocity.txt", grid, path, path_velocity);
   //  GridPlotter::plotMapPath(grid,path);
 
-
+*/
     //open path file
     ifstream file("test_path.txt");
     string str;

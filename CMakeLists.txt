@@ -9,13 +9,13 @@ ENDIF(NOT CMAKE_CONFIGURATION_TYPES AND NOT CMAKE_BUILD_TYPE)
 
 # Select flags.
 SET(CMAKE_CXX_FLAGS "-std=c++11")
+#SET(CMAKE_CXX_FLAGS "-lwiringPi")
 SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O3 -g")
 SET(CMAKE_CXX_FLAGS_RELEASE "-Ofast -fno-finite-math-only")
 SET(CMAKE_CXX_FLAGS_DEBUG  "-Wall -Wno-unused-local-typedefs -g")
 
 # Find OpenCV
 find_package(OpenCV REQUIRED)
-#find_package(ZBar0 REQUIRED)
 
 # Self-made includes
 include_directories (${FMM_SOURCE_DIR}/console)
@@ -25,7 +25,7 @@ include_directories (${FMM_SOURCE_DIR}/fmm/fmdata)
 include_directories (${FMM_SOURCE_DIR}/fm2)
 include_directories (${FMM_SOURCE_DIR}/io)
 include_directories (${FMM_SOURCE_DIR}/gradientdescent)
-
+include_directories (${FMM_SOURCE_DIR}/wiringPi)
 
 # Third party internal includes
 include_directories (${FMM_SOURCE_DIR}/thirdparty) 
@@ -34,12 +34,16 @@ include_directories (${FMM_SOURCE_DIR}/thirdparty)
 # External dependencies
 include_directories (~/boost_1_55_0)
 
-add_executable (fmm main_console.cpp
+add_executable (fmm main_console_sin_opencv.cpp
                     console/console.cpp
                     ndgridmap/cell.cpp
                     fmm/fmdata/fmcell.cpp
+		    wiringPi/wiringPi.h
+		    wiringPi/softServo.h
+
                     ) 
 
 # Linking CImg dependencies.
 target_link_libraries(fmm ${OpenCV_LIBS})
+#target_link_libraries(fmm wiringPi)
 target_link_libraries (fmm X11 pthread ) 

@@ -38,12 +38,12 @@ add_executable (fmm main_console_sin_opencv.cpp
                     console/console.cpp
                     ndgridmap/cell.cpp
                     fmm/fmdata/fmcell.cpp
-		    wiringPi/wiringPi.h
-		    wiringPi/softServo.h
+		    wiringPi/wiringPi.c
+		    wiringPi/softServo.c
 
                     ) 
 
 # Linking CImg dependencies.
 #target_link_libraries(fmm ${OpenCV_LIBS})
-#target_link_libraries(fmm wiringPi)
+target_link_libraries(fmm wiringPi)
 target_link_libraries (fmm X11 pthread ) 

@@ -34,6 +34,9 @@
 #include <errno.h>
 #include <string.h>
 
+#include "wiringPi/wiringPi.h"
+#include "wiringPi/softServo.h"
+
 #include <wiringPi.h>
 #include <softServo.h>
 
@@ -56,7 +59,7 @@ int main(int argc, const char ** argv)
 {
     constexpr unsigned int ndims = 2; // Setting two dimensions.
     constexpr unsigned int ndims3 = 3; // Setting three dimensions.
-/*
+
     //inicialize GPIOs os Rpi for Servos
     if (wiringPiSetup () == -1)
         {
@@ -64,7 +67,7 @@ int main(int argc, const char ** argv)
         return 1 ;
         }
     softServoSetup (R_Servo, L_Servo,-1,-1,-1,-1,-1,-1) ;
-*/
+
 
     time_point<std::chrono::steady_clock> start, end; // Time measuring.
     double time_elapsed;
@@ -74,6 +77,8 @@ int main(int argc, const char ** argv)
     console::parseArguments(argc,argv, "-map1", filename1);
     console::parseArguments(argc,argv, "-map2", filename2);
     console::parseArguments(argc,argv, "-vel", filename_vels);
+
+
 /*
     console::info("OpenCV Transform...");
     // Load the image
@@ -126,6 +131,8 @@ int main(int argc, const char ** argv)
     //waitKey(0);
 //    waitKey(100);
 */
+
+
     console::info("Creating grid from image and testing Fast Marching Method..");
     nDGridMap<FMCell, ndims> grid;
     MapLoader::loadMapFromImg("map.jpg", grid);
@@ -242,13 +249,13 @@ cout << "Coord Path x:" << xpath << "       Coord Path y:"<< ypath << endl;
         // Adecuar velocidad
 
         // Sacar la señal de los motores
-        vel_r = (int)(5.555555*Omega_R + 927,78);
-        vel_l = (int)(0,34219*Omega_L*Omega_L*Omega_L-1.9104*Omega_L*Omega_L+12.967*Omega_L+1447.6);
+        vel_r = (int)(5.555555*Omega_R + 927,78) -1000;
+        vel_l = (int)(0,34219*Omega_L*Omega_L*Omega_L-1.9104*Omega_L*Omega_L+12.967*Omega_L+1447.6) -1000;
 
         // Mover los motores
 
-//        softServoWrite (R_Servo,  vel_r) ;
-//        softServoWrite (L_Servo,  vel_l) ;
+        softServoWrite (R_Servo,  vel_r) ;
+        softServoWrite (L_Servo,  vel_l) ;
 
 
 

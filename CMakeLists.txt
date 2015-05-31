@@ -25,7 +25,8 @@ include_directories (${FMM_SOURCE_DIR}/fmm/fmdata)
 include_directories (${FMM_SOURCE_DIR}/fm2)
 include_directories (${FMM_SOURCE_DIR}/io)
 include_directories (${FMM_SOURCE_DIR}/gradientdescent)
-include_directories (${FMM_SOURCE_DIR}/wiringPi)
+#include_directories (${FMM_SOURCE_DIR}/wiringPi)
+include_directories (home/pi/repos/UUGear/RaspberryPi/src/)
 
 # Third party internal includes
 include_directories (${FMM_SOURCE_DIR}/thirdparty) 
@@ -34,16 +35,15 @@ include_directories (${FMM_SOURCE_DIR}/thirdparty)
 # External dependencies
 include_directories (~/boost_1_55_0)
 
-add_executable (fmm main_console_sin_opencv.cpp
+add_executable (fmm main_console_navegacion_arduino.cpp
                     console/console.cpp
                     ndgridmap/cell.cpp
                     fmm/fmdata/fmcell.cpp
-		    wiringPi/wiringPi.c
-		    wiringPi/softServo.c
+		  #  home/pi/repos/UUGear/RaspberryPi/src/UUGear.c
 
                     ) 
 
 # Linking CImg dependencies.
 #target_link_libraries(fmm ${OpenCV_LIBS})
-target_link_libraries(fmm wiringPi)
+#target_link_libraries(fmm wiringPi)
 target_link_libraries (fmm X11 pthread ) 

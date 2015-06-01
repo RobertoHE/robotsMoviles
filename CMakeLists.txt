@@ -9,7 +9,6 @@ ENDIF(NOT CMAKE_CONFIGURATION_TYPES AND NOT CMAKE_BUILD_TYPE)
 
 # Select flags.
 SET(CMAKE_CXX_FLAGS "-std=c++11")
-#set(CMAKE_CXX_FLAGS "-fpermissive")
 SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O3 -g")
 SET(CMAKE_CXX_FLAGS_RELEASE "-Ofast -fno-finite-math-only")
 SET(CMAKE_CXX_FLAGS_DEBUG  "-Wall -Wno-unused-local-typedefs -g")
@@ -45,8 +44,7 @@ add_executable (fmm
                     console/console.cpp
                     ndgridmap/cell.cpp
                     fmm/fmdata/fmcell.cpp
-		~/repos/UUGear/RaspberryPi/src/serial.c
-		
+		~/repos/UUGear/RaspberryPi/src/serial.c		
                     main_console_navegacion_arduino.cpp
                   ) 
 

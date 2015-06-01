@@ -48,12 +48,12 @@
 #include <sys/time.h>
 #include <time.h>
 
-#include "home/pi/repos/UUGear/RaspberryPi/src/UUGear.h"
+#include "/home/pi/repos/UUGear/RaspberryPi/src/UUGear.h"
 
-
+/*
 #define R_Servo 13
 #define L_Servo 12
-
+*/
 
 
 using namespace std;
@@ -62,25 +62,27 @@ using namespace std::chrono;
 
 
 void global_to_relative(double x, double y, double dx, double dy, double alfa, double &rx, double &yr);
+int R_Servo=13;
+int L_Servo=12;
 
 int main(int argc, const char ** argv)
 {
 //    constexpr unsigned int ndims = 2; // Setting two dimensions.
 //    constexpr unsigned int ndims3 = 3; // Setting three dimensions.
 
-    setupUUGear();
-
-        setShowLogs(0);
+    	setupUUGear();
+        setShowLogs(1);
 
         /* replace the device id with yours (listed by lsuu) */
         UUGearDevice dev = attachUUGearDevice ("UUGear-Arduino-6746-1908");
-
-        if (dev.fd = -1)
+	cout << dev.fd << endl;
+ 	if (dev.fd == -1)
             {
             cout << "UUGEAR Fail" << endl;
             return 2;
         }
-        attachServo(&dev, R_Servo);
+
+	attachServo(&dev, R_Servo);
         attachServo(&dev, L_Servo);
 
 
@@ -270,7 +272,7 @@ cout << "Coord Path x:" << xpath << "       Coord Path y:"<< ypath << endl;
         vel_l = (int)(0.0101*Omega_L*Omega_L*Omega_L*Omega_L  +0.2565*Omega_L*Omega_L*Omega_L-1.9716*Omega_L*Omega_L +14.842*Omega_L +1455.2) -1000;
 
         // Mover los motores
-        vel_r = 90;
+        vel_r = 180;
         vel_l = 90;
         writeServo(&dev, R_Servo, vel_r);
         writeServo(&dev, L_Servo, vel_l );
@@ -295,7 +297,11 @@ cout << "Coord Path x:" << xpath << "       Coord Path y:"<< ypath << endl;
     detachServo(&dev, R_Servo);
     detachServo(&dev, L_Servo);
     detachUUGearDevice (&dev);
+	usleep(100000);
+
     cleanupUUGear();
+	usleep(100000);
+
     return 0;
 }
 

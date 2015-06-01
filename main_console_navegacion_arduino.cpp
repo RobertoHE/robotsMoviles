@@ -62,6 +62,8 @@ using namespace std::chrono;
 
 
 void global_to_relative(double x, double y, double dx, double dy, double alfa, double &rx, double &yr);
+void compareR(double &w, int v);
+void compareL(double &w, int v);
 int R_Servo=13;
 int L_Servo=12;
 
@@ -266,14 +268,17 @@ cout << "Coord Path x:" << xpath << "       Coord Path y:"<< ypath << endl;
 
         // Adecuar velocidad
 
+        compareR(Omega_R,vel_r);
+        compareL(Omega_L,vel_l);
+
 
         // Sacar la señal de los motores
-        vel_r = (int)(-0.1364*Omega_R*Omega_R*Omega_R*Omega_R +1.4123*Omega_R*Omega_R*Omega_R-5.1732*Omega_R*Omega_R-3.1437*Omega_R+1422.3) -1000;
-        vel_l = (int)(0.0101*Omega_L*Omega_L*Omega_L*Omega_L  +0.2565*Omega_L*Omega_L*Omega_L-1.9716*Omega_L*Omega_L +14.842*Omega_L +1455.2) -1000;
+        //vel_r = (int)(-0.1364*Omega_R*Omega_R*Omega_R*Omega_R +1.4123*Omega_R*Omega_R*Omega_R-5.1732*Omega_R*Omega_R-3.1437*Omega_R+1422.3) -1000;
+        //vel_l = (int)(0.0101*Omega_L*Omega_L*Omega_L*Omega_L  +0.2565*Omega_L*Omega_L*Omega_L-1.9716*Omega_L*Omega_L +14.842*Omega_L +1455.2) -1000;
 
         // Mover los motores
-        vel_r = 180;
-        vel_l = 90;
+        //vel_r = 180;
+        //vel_l = 90;
         writeServo(&dev, R_Servo, vel_r);
         writeServo(&dev, L_Servo, vel_l );
     cout << "pulse:" <<  vel_r << ", " << vel_l  << endl;
@@ -297,10 +302,11 @@ cout << "Coord Path x:" << xpath << "       Coord Path y:"<< ypath << endl;
     detachServo(&dev, R_Servo);
     detachServo(&dev, L_Servo);
     detachUUGearDevice (&dev);
-	usleep(100000);
+//	usleep(100000);
 
     cleanupUUGear();
-	usleep(100000);
+//	usleep(100000);
+    cout << "FIN" << endl;
 
     return 0;
 }
@@ -320,4 +326,114 @@ void global_to_relative(double x, double y, double dx, double dy, double alfa, d
     */
 
 
+}
+void compareL(double &w, int v){
+    float vector_w[]={
+        0,
+        0.5351946599,
+        1.064946662,
+        1.266771231,
+        1.72614981,
+        2.327105669,
+        2.963766654,
+        3.452299619,
+        3.878509449,
+        4.30355158,
+        4.553032831,
+        4.908738521,
+        5.150151891,
+        5.416539058,
+        5.711986643,
+        5.711986643,
+        5.817764173,
+        5.927533309,
+        6.04152433};
+
+    int vector_v[]={
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        110,
+        120
+    };
+
+    float error=1000000;
+    int iter;
+
+    for(int i=0;i<(sizeof(vector_w)/sizeof(*vector_w));i++){
+        if(error > ((vector_w[i]-w)*(vector_w[i]-w))){
+                iter = i;
+                error = ((vector_w[i]-w)*(vector_w[i]-w));
+        }
+    }
+    w = vector_w[iter];
+    v = vector_v[iter];
+}
+
+void compareR(double &w, int v){
+    float vector_w[]={
+        0,
+        0.9941748904,
+        1.56298142,
+        1.795195802,
+        2.309994598,
+        2.908882087,
+        3.452299619,
+        3.926990817,
+        4.487989505,
+        4.759988869,
+        5.067084925,
+        5.324733311,
+        5.711986643,
+        5.817764173,
+        5.817764173,
+        5.927533309,
+        6.159985595
+    };
+
+    int vector_v[]={
+        90,
+        89,
+        88,
+        87,
+        86,
+        85,
+        84,
+        83,
+        82,
+        81,
+        80,
+        79,
+        78,
+        77,
+        76,
+        75,
+        64
+    };
+
+    float error=1000000;
+    int iter;
+
+    for(int i=0;i<(sizeof(vector_w)/sizeof(*vector_w));i++){
+        if(error > ((vector_w[i]-w)*(vector_w[i]-w))){
+                iter = i;
+                error = ((vector_w[i]-w)*(vector_w[i]-w));
+        }
+    }
+    w = vector_w[iter];
+    v = vector_v[iter];
 }

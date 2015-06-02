@@ -1,6 +1,6 @@
 El proyecto está pensado para utilizarlo sobre una RaspberryPi y un Arduino para controlar los servomotores con una señal de 5V
 
-Fast Marching basado en el proyecto de Javier V. Gomez
+Fast Marching basado en el proyecto de Javier V. Gomez de GitHub (https://github.com/jvgomez/fastmarching.git)
 Se necesita tener instaladas las librerias OpenCV
 Se necesita tener instaladas las librerias CMAKE
 Se necesita tener las fuentes del proyecto UUGear (Utiliza Arduino como un periférico esclavo)

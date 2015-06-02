@@ -45,7 +45,7 @@ add_executable (fmm
                     ndgridmap/cell.cpp
                     fmm/fmdata/fmcell.cpp
 		~/repos/UUGear/RaspberryPi/src/serial.c		
-                    main_console_navegacion_arduino.cpp
+                    main.cpp
                   ) 
 
 # Linking CImg dependencies.

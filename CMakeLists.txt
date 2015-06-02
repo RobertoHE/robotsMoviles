@@ -14,7 +14,7 @@ SET(CMAKE_CXX_FLAGS_RELEASE "-Ofast -fno-finite-math-only")
 SET(CMAKE_CXX_FLAGS_DEBUG  "-Wall -Wno-unused-local-typedefs -g")
 
 # Find OpenCV
-#find_package(OpenCV REQUIRED)
+find_package(OpenCV REQUIRED)
 
 #find_library(UUGearLib libUUGear.so)
 # Self-made includes
@@ -49,7 +49,7 @@ add_executable (fmm
                   ) 
 
 # Linking CImg dependencies.
-#target_link_libraries(fmm ${OpenCV_LIBS})
+target_link_libraries(fmm ${OpenCV_LIBS})
 
 target_link_libraries (fmm X11 pthread rt myUUGear myUUGearD)
 #target_link_libraries (fmm UUGearDaemon)
